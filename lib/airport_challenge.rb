@@ -4,7 +4,7 @@ require_relative 'weather'
 class Airport
   DEF_CAPACITY = 20
 
-  attr_reader :capacity, :weather, :planes
+  attr_reader :planes
 
   def initialize(capacity = DEF_CAPACITY, weather: Weather.new)
     @capacity = capacity
@@ -13,14 +13,34 @@ class Airport
   end
 
   def land(plane)
-    raise "Too stormy." if weather.stormy?
     landing_safety_check(plane)
+    plane.land
     planes << plane
   end
 
   def landing_safety_check(plane)
+    weather_check
     plane_landed(plane)
     full_airport
+  end
+
+  def takeoff(plane)
+    takeoff_safety_check(plane)
+    planes.delete(plane)
+    plane.takeoff
+  end
+
+  def takeoff_safety_check(plane)
+    weather_check
+    raise "Plane in air." unless landed?(plane)
+    raise "Plane not in airport." unless present?(plane)
+  end
+
+  private
+  attr_reader :capacity, :weather
+
+  def weather_check
+    raise "Too stormy." if weather.stormy?
   end
 
   def plane_landed(plane)
@@ -30,24 +50,6 @@ class Airport
   def full_airport
     raise "This airport is full." if full?
   end
-
-  def takeoff(plane)
-    # takeoff_safety_check(plane)
-    raise "Too stormy." if weather.stormy?
-    raise "Plane in air." unless landed?(plane)
-    raise "Plane not in airport." unless present?(plane)
-    planes.delete(plane)
-    plane.takeoff
-  end
-
-  def takeoff_safety_check(plane)
-    storm_safety
-    fly_safety(plane)
-    absent_plane(plane)
-  end
-
-  private
-  attr_writer :planes
 
   def full?
     planes.length == capacity

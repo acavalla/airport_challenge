@@ -1,4 +1,4 @@
-![build](https://img.shields.io/badge/build-passing-brightgreen) 
+![language-ruby](https://img.shields.io/badge/language-ruby-red) ![version-2.6.5](https://img.shields.io/badge/version-2.6.5-yellow) ![coverage-score](https://img.shields.io/badge/coverage-100%-blue) ![build](https://img.shields.io/badge/build-passing-brightgreen)
 
 
 Airport Challenge
@@ -7,7 +7,7 @@ Airport Challenge
 ```
         ______
         _\____\___
-=  = ==(____MA____)
+=  = ==(____AA____)
           \_____\___________________,-~~~~~~~`-.._
           /     o o o o o o o o o o o o o o o o  |\_
           `~-.__       __..----..__                  )
@@ -43,9 +43,7 @@ To ensure safety
 I want to prevent landing when weather is stormy
 ```
 
-I did this by test driving the creation of a set of classes to satisfy all the above user stories. I used sample to set the weather (it is normally sunny but on rare occasions it may be stormy) and stubbed it in the rspec.
-
-I really enjoyed learning to use stub methods to set a variable that could be random. Refactoring each error message into a further method seemed like overkill but it makes it easier to understand and ensures that it abides by the SRP, and meant it was easier to debug when adding new features.
+I did this by test driving the creation of a set of classes to satisfy all the above user stories. I used sample to set the weather (it is normally sunny but on rare occasions it may be stormy) and stubbed it in the test suite.
 
 ```Ruby
 $ irb
@@ -67,4 +65,4 @@ Traceback (most recent call last):
         1: from /Users/annie/MakersProjs/weekend-challenges/airport_challenge/lib/airport_challenge.rb:43:in `weather_check'
 RuntimeError (Too stormy.)
 ```
-The code throws errors for things you wouldn't want to happen, like trying to land a plane that's already landed in any airport, trying to takeoff a plane that's not in the airport, and trying to takeoff a plane that's in the air already.
+The code throws errors for edge cases, like trying to land a plane that's already landed in any airport, trying to takeoff a plane that's not in the airport, and trying to takeoff a plane that's in the air already.

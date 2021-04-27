@@ -4,6 +4,12 @@
 Airport Challenge
 =================
 
+## How to run
+
+1. Clone this repo: `git clone https://github.com/acavalla/airport_challenge.git`
+2. To run the test suite, run `rspec`
+2. Open the Ruby REPL `irb -r runfile.rb`. Please see below for demo of functionality.
+
 ```
         ______
         _\____\___
@@ -65,4 +71,4 @@ Traceback (most recent call last):
         1: from /Users/annie/MakersProjs/weekend-challenges/airport_challenge/lib/airport_challenge.rb:43:in `weather_check'
 RuntimeError (Too stormy.)
 ```
-The code throws errors for edge cases, like trying to land a plane that's already landed in any airport, trying to takeoff a plane that's not in the airport, and trying to takeoff a plane that's in the air already.
+The code throws errors for edge cases, like trying to land a plane that's already landed in any airport, trying to take off a plane that's not in the airport, and trying to take off a plane that's in the air already.
